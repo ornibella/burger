@@ -1,0 +1,55 @@
+<div class="container">
+<div class="row">
+  <div class="jumbotron text-center">
+    <h1>Eat-Da-Burger!</h1>
+    <p>What type of burger are you craving? </p> 
+  </div>
+  <img style="width: 200px; height: 200px; margin-top: -330px; margin-left: 100px;" src="/assets/images/burger.jpg">
+</div>
+</div>
+<div class="row">
+  <div id="ordered" class="container col-md-6 col-lg-6 text-center">
+    <ul>
+      {{#each burgers}}
+        {{#unless this.devoured}}
+        <div class="well well-sm"> 
+          <div class="orderedBurgers">
+        </div>
+            {{this.burger_name}}
+          </div>     
+         {{!--  devour it button  --}}  
+          <div class="devourBtn">
+            <form action="/{{this.id}}?_method=PUT" method="POST">
+              <button type="submit" class="devourBtns"> DEVOUR IT!</button>
+            </form>
+          </div>
+        {{/unless}}
+      {{/each}}
+    </ul>
+  </div>
+  <div class="col-md-1"></div>
+  <div id="devoured" class="container col-md-6">
+    <ul>
+      {{#each burgers}}
+        {{#if this.devoured}}
+        <div class="well well-sm"> 
+          <div class="devouredBurgers">
+        </div> 
+            {{this.burger_name}}
+          </div>
+             <p>That was delicious!</p>
+        {{/if}}
+      {{/each}}
+    </ul>
+  </div>
+</div>
+  <div class="row text-center">
+      <form class="add-burger" action="/" method="POST">
+        <div class="form-group">
+          <input type="text" id="burger" name="name">
+        </div>
+        <button type="submit"> Add to order</button>
+        <h5>Enter a burger type then click "Add to order"</h5>
+      </form>
+  </div>
+</div>
